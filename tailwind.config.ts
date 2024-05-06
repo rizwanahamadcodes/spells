@@ -130,10 +130,7 @@ const config: Config = {
                 xs: "480px",
             },
             fontFamily: {
-                sans: [
-                    "var(--font-montserrat)",
-                    ...defaultTheme.fontFamily.sans,
-                ],
+                sans: ["Montserrat", "system-ui"],
             },
             minHeight: () => {
                 const minHeight: {
