@@ -25,6 +25,7 @@ const config: Config = {
 
             spacing["navHeight-large"] = "5rem";
             spacing["navHeight-small"] = "4rem";
+            spacing["navHeight"] = "4rem";
 
             return spacing;
         },

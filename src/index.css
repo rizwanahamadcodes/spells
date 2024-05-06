@@ -1,48 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@100;200;300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@100&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-    @apply scroll-smooth;
-}
-
 body {
-    @apply text-gray-900;
-}
-
-h1,
-h2,
-np h3,
-h4,
-h5,
-h6 {
-    @apply text-gray-900 font-semibold leading-1;
+    @apply dark:bg-gray-900 font-medium;
 }
 
 p {
-    @apply text-gray-700 font-medium;
-}
-
-a {
-    @apply text-gray-700 hover:text-gray-900;
-}
-h1 {
-    @apply text-3.25;
-}
-
-h2 {
-    @apply text-2.25;
-}
-
-h3 {
-    @apply text-1.5;
-}
-
-h4,
-h5,
-h6,
-p {
-    @apply text-1;
+    @apply text-1 leading-1.625 text-gray-700 dark:text-gray-300;
+    /* @apply transition-colors; */
 }

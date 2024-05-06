@@ -2,6 +2,7 @@ import clsx from "clsx";
 import Container from "../Container/Container";
 import NavMenuWithTabIndicator from "./NavMenuWithTabIndicator";
 import NavDrawer from "../NavDrawer/NavDrawer";
+import BrandLogo from "../BrandLogo";
 
 type NavbarProps = {
     viewportTouchingStatus?: {
@@ -23,10 +24,8 @@ const Navbar = (props: NavbarProps) => {
                         : "h-navHeight-small shadow"
                 )}>
                 <Container className="h-full flex items-center justify-between">
-                    <p>Logo</p>
-
+                    <BrandLogo />
                     <NavMenuWithTabIndicator className="hidden lg:block" />
-
                     <NavDrawer />
                 </Container>
             </nav>

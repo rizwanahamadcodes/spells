@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { DrawerContext, useDrawerProps } from "./useDrawerProps";
 import { useRef } from "react";
 import CloseButton from "../CloseButton/CloseButton";
+import BrandLogo from "../BrandLogo";
 
 export type DrawerProps = {
     children: React.ReactNode;
@@ -105,7 +106,7 @@ export const DrawerDefaultHead = (props: DrawerDefaultHeadProps) => {
                 "justify-between",
                 defaultPadding ? "px-[7vw]" : ""
             )}>
-            <p></p>
+            <BrandLogo />
             <CloseButton onClick={close} />
         </DrawerHead>
     );
