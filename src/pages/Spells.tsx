@@ -7,9 +7,7 @@ import useSpells from "../hooks/useSpells";
 
 const Spells = () => {
     const { data, error, loading } = useSpells();
-
     if (error) return <h2>{error}</h2>;
-    console.log(data);
     const cardSkeletons = new Array(38).fill(null);
 
     return (
@@ -28,7 +26,9 @@ const Spells = () => {
                     ) : (
                         <SpellsGrid>
                             {data.map((spell) => (
-                                <SpellCard spell={spell}></SpellCard>
+                                <SpellCard
+                                    key={spell.index}
+                                    spell={spell}></SpellCard>
                             ))}
                         </SpellsGrid>
                     )}

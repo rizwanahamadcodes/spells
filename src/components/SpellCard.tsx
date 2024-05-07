@@ -9,8 +9,6 @@ type SpellCardProps = {
 const SpellCard = (props: SpellCardProps) => {
     const { spell } = props;
 
-    console.log(spell);
-
     return (
         <div className="shadow rounded-0.5 bg-white p-1">
             <Link to={`${pathConstants.SPELLS}/${spell.index}`}>

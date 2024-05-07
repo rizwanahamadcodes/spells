@@ -51,7 +51,6 @@ const NavItem = (props: NavItemProps) => {
         if (!navItem) {
             return;
         }
-        console.log("i was rendered");
         if (navItemRef.current)
             if (isLinkActive) {
                 setTabIndicatorBoundsFromElement(navItem);
