@@ -1,24 +1,23 @@
-import { BsCart3 } from "react-icons/bs";
 import Button, { ButtonIcon } from "./Button";
 import { DrawerProps } from "./Drawer/Drawer";
 // import { useSelector } from "react-redux";
 // import { RootState } from "../../store/rootReducer";
-// import { selectNoOfItemsInCart } from "../../store/slices/cartSlice";
+// import { selectNoOfItemsInFavorites } from "../../store/slices/favoritesSlice";
 // import Button, { ButtonIcon } from "../Button";
 // import { DrawerProps } from "../Drawer";
 import { GoHeart } from "react-icons/go";
 
-type CartDrawerProps = {
+type FavoritesDrawerProps = {
     open?: DrawerProps["open"];
 };
 
-const CartIcon = (props: CartDrawerProps) => {
+const FavoritesIcon = (props: FavoritesDrawerProps) => {
     const { open } = props;
 
-    // const noOfItemsInCart = useSelector((state: RootState) =>
-    //     selectNoOfItemsInCart(state)
+    // const noOfItemsInFavorites = useSelector((state: RootState) =>
+    //     selectNoOfItemsInFavorites(state)
     // );
-    const noOfItemsInCart = 3;
+    const noOfItemsInFavorites = 3;
 
     return (
         <>
@@ -32,26 +31,28 @@ const CartIcon = (props: CartDrawerProps) => {
                     className="text-primary !px-0 text-1.625"
                 />
 
-                {noOfItemsInCart != 0 && (
-                    <NoOfItemsInCartBubble noOfItemsInCart={noOfItemsInCart} />
+                {noOfItemsInFavorites != 0 && (
+                    <NoOfItemsInFavoritesBubble
+                        noOfItemsInFavorites={noOfItemsInFavorites}
+                    />
                 )}
             </Button>
         </>
     );
 };
 
-type NoOfItemsInCartBubbleProps = {
-    noOfItemsInCart: number;
+type NoOfItemsInFavoritesBubbleProps = {
+    noOfItemsInFavorites: number;
 };
 
-const NoOfItemsInCartBubble = (props: NoOfItemsInCartBubbleProps) => {
-    const { noOfItemsInCart } = props;
+const NoOfItemsInFavoritesBubble = (props: NoOfItemsInFavoritesBubbleProps) => {
+    const { noOfItemsInFavorites } = props;
 
     return (
         <span className="font-medium h-1.5 w-1.5 absolute text-white bg-primary right-0 translate-x-1/2 top-2 flex items-center justify-center rounded-full">
-            {noOfItemsInCart}
+            {noOfItemsInFavorites}
         </span>
     );
 };
 
-export default CartIcon;
+export default FavoritesIcon;

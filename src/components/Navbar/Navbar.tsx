@@ -1,11 +1,11 @@
 import clsx from "clsx";
-import Container from "../Container/Container";
-import NavMenuWithTabIndicator from "./NavMenuWithTabIndicator";
-import NavDrawer from "../Drawers/NavDrawer";
-import BrandLogo from "../BrandLogo";
-import CartIcon from "../CartIcon";
 import { useToggle } from "../../hooks/useToggle";
+import BrandLogo from "../BrandLogo";
+import Container from "../Container/Container";
 import Drawer, { DrawerBody, DrawerDefaultHead } from "../Drawer/Drawer";
+import NavDrawer from "../Drawers/NavDrawer";
+import FavoritesIcon from "../FavoritesIcon";
+import NavMenuWithTabIndicator from "./NavMenuWithTabIndicator";
 
 const Navbar = () => {
     const {
@@ -22,7 +22,7 @@ const Navbar = () => {
                 <Container className="h-full flex items-center justify-between gap-2">
                     <BrandLogo />
                     <NavMenuWithTabIndicator className="ml-auto hidden lg:block" />
-                    <CartIcon open={openFavorites} />
+                    <FavoritesIcon open={openFavorites} />
                     <NavDrawer />
 
                     <Drawer
