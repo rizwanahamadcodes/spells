@@ -5,7 +5,7 @@ import CloseButton from "../CloseButton/CloseButton";
 import BrandLogo from "../BrandLogo";
 
 export type DrawerProps = {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     isOpen: boolean;
     open: () => void;
     close: () => void;
