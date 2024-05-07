@@ -15,7 +15,6 @@ const useData = <T>(
     const [data, setData] = useState<T[]>([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-
     useEffect(
         () => {
             const controller = new AbortController();
@@ -41,7 +40,6 @@ const useData = <T>(
         },
         deps ? [...deps] : []
     );
-
     return { data, error, loading };
 };
 export default useData;

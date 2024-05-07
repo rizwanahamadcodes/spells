@@ -7,6 +7,6 @@ export interface Spell {
     url: string;
 }
 const useSpell = (spellName: string) => {
-    return useData<Spell>(`spells/${spellName}`);
+    return useData<any>(`/spells/${spellName}`);
 };
 export default useSpell;
