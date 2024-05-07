@@ -68,7 +68,7 @@ const NavItem = (props: NavItemProps) => {
             isLinkActive ? "bg-gray-500/20 dark:bg-gray-500/20" : ""
         ),
         vertical: clsx(
-            "h-4 pl-[7vw] border-b border-b-gray-100 dark:border-b-gray-700 dark:hover:bg-gray-750",
+            "h-4 pl-2 border-b border-b-gray-100 dark:border-b-gray-700 dark:hover:bg-gray-750",
             isLinkActive ? "bg-gray-50 dark:bg-gray-750" : ""
         ),
     };

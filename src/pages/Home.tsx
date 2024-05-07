@@ -10,9 +10,9 @@ import { GoHeartFill } from "react-icons/go";
 const HeroSection = () => {
     return (
         <Section
-            className="bg-white dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-800 mt-navHeight-large py-5"
+            className="bg-white dark:bg-gray-900 border-b border-b-gray-200 dark:border-b-gray-800 mt-navHeight-large pt-8 h-[calc(100vh_-_5rem)]"
             defaultPadding={false}>
-            <Container className="relative h-screen max-w-[800px]">
+            <Container className="relative max-w-[800px]">
                 <GreetingLine className="mb-1" />
                 <IntroLine className="mb-1.5" />
                 <CTA />

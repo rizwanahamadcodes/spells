@@ -112,7 +112,7 @@ export const DrawerDefaultHead = (props: DrawerDefaultHeadProps) => {
             height={height}
             className={clsx(
                 "justify-between",
-                defaultPadding ? "px-[7vw]" : ""
+                defaultPadding ? "pl-2 pr-[7vw]" : ""
             )}>
             <BrandLogo />
             <CloseButton onClick={close} />
