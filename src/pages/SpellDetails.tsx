@@ -56,15 +56,15 @@ const SpellDetailsContent = ({ spellData }: { spellData: SpellDetailType }) => {
     const dispatch = useDispatch();
 
     const isSpellFavorite = useSelector((state: RootState) =>
-        isFavorite(state, spellData.name)
+        isFavorite(state, spellData.index)
     );
 
     const handleToggleFavorite = () => {
         const spell: Spell = {
-            index: spellData.name, // Use the spell name as index
+            index: spellData.index,
             level: spellData.level,
             name: spellData.name,
-            url: "", // You can set the URL if available
+            url: spellData.url,
         };
 
         if (isSpellFavorite) {

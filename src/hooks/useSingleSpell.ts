@@ -3,6 +3,7 @@ import axios from "axios";
 
 export type SpellDetailType = {
     name: string;
+    index: string;
     school: {
         index: string;
     };
