@@ -3,6 +3,7 @@ import Container from "../Container/Container";
 import NavMenuWithTabIndicator from "./NavMenuWithTabIndicator";
 import NavDrawer from "../NavDrawer/NavDrawer";
 import BrandLogo from "../BrandLogo";
+import CartIcon from "../CartIcon";
 
 type NavbarProps = {
     viewportTouchingStatus?: {
@@ -23,9 +24,10 @@ const Navbar = (props: NavbarProps) => {
                         ? "h-navHeight-large"
                         : "h-navHeight-small shadow"
                 )}>
-                <Container className="h-full flex items-center justify-between">
+                <Container className="h-full flex items-center justify-between gap-2">
                     <BrandLogo />
-                    <NavMenuWithTabIndicator className="hidden lg:block" />
+                    <NavMenuWithTabIndicator className="ml-auto hidden lg:block" />
+                    <CartIcon />
                     <NavDrawer />
                 </Container>
             </nav>
