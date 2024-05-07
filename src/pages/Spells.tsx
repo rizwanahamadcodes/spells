@@ -1,20 +1,36 @@
+import CardSkeleton from "../components/CardSkeleton";
 import Container from "../components/Container/Container";
-import Section from "../components/Section";
+import Section, { SectionTitle } from "../components/Section";
+import SpellCard from "../components/SpellCard";
+import SpellsGrid from "../components/SpellsGrid";
 import useSpells from "../hooks/useSpells";
 
 const Spells = () => {
     const { data, error, loading } = useSpells();
 
     if (error) return <h2>{error}</h2>;
+    console.log(data);
+    const cardSkeletons = new Array(38).fill(null);
 
     return (
-        <div className="min-h-screen relative pt-navHeight pb-2">
-            <Section>
+        <div className="pt-navHeight">
+            <Section className="">
+                <Container>
+                    <SectionTitle defaultBottomMargin>All Spells</SectionTitle>
+                </Container>
                 <Container>
                     {loading ? (
-                        <></>
+                        <SpellsGrid>
+                            {cardSkeletons.map((_, index) => (
+                                <CardSkeleton key={index} />
+                            ))}
+                        </SpellsGrid>
                     ) : (
-                        data.map((spell) => <h2>{spell.index}</h2>)
+                        <SpellsGrid>
+                            {data.map((spell) => (
+                                <SpellCard spell={spell}></SpellCard>
+                            ))}
+                        </SpellsGrid>
                     )}
                 </Container>
             </Section>
