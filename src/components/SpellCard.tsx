@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import { Spell } from "../hooks/useSpells";
 import pathConstants from "../routes/pathConstants";
-import { GoHeart } from "react-icons/go";
-import { GoHeartFill } from "react-icons/go";
+import { useDispatch, useSelector } from "react-redux";
+import { GoHeart, GoHeartFill } from "react-icons/go";
+import {
+    addFavorite,
+    isFavorite,
+    removeFavorite,
+} from "../store/slices/favoritesSlice";
+import { RootState } from "../store/store";
 
 type SpellCardProps = {
     spell: Spell;
@@ -10,6 +16,18 @@ type SpellCardProps = {
 
 const SpellCard = (props: SpellCardProps) => {
     const { spell } = props;
+    const dispatch = useDispatch();
+    const isSpellFavorite = useSelector((state: RootState) =>
+        isFavorite(state, spell.index)
+    );
+
+    const handleToggleFavorite = () => {
+        if (isSpellFavorite) {
+            dispatch(removeFavorite(spell.index));
+        } else {
+            dispatch(addFavorite(spell));
+        }
+    };
 
     return (
         <div className="shadow rounded-0.5 bg-white p-1 flex flex-col">
@@ -19,7 +37,17 @@ const SpellCard = (props: SpellCardProps) => {
                     className="borders">
                     <h2 className="text-1.25">{spell.name}</h2>
                 </Link>
-                <GoHeart className="cursor-pointer text-gray-700 text-1.25 transition-alll hover:text-[red]" />
+                {isSpellFavorite ? (
+                    <GoHeartFill
+                        className="cursor-pointer text-[red] text-1.375 transition-all hover:text-[red]"
+                        onClick={handleToggleFavorite}
+                    />
+                ) : (
+                    <GoHeart
+                        className="cursor-pointer text-gray-700 text-1.375 transition-all hover:text-[red]"
+                        onClick={handleToggleFavorite}
+                    />
+                )}
             </div>
             <h3>
                 <span className="text-gray-600">Level:{` `}</span>

@@ -5,7 +5,13 @@ import Layout from "./pages/Layout";
 import Spells from "./pages/Spells";
 import SpellDetails from "./pages/SpellDetails";
 import Favorites from "./pages/Favorites";
+import { Provider } from "react-redux";
+import rootReducer from "./store/store";
+import { configureStore } from "@reduxjs/toolkit";
 
+const store = configureStore({
+    reducer: rootReducer,
+});
 const router = createBrowserRouter([
     {
         path: pathConstants.HOME,
@@ -39,7 +45,9 @@ const router = createBrowserRouter([
 function App() {
     return (
         <>
-            <RouterProvider router={router} />
+            <Provider store={store}>
+                <RouterProvider router={router} />
+            </Provider>
         </>
     );
 }

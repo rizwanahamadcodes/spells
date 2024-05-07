@@ -5,6 +5,15 @@ import useSingleSpell, { SpellDetailType } from "../hooks/useSingleSpell";
 import { paramConstants } from "../routes/pathConstants";
 import { formatName } from "../utilities/formatName";
 import SpellDetailsSkeleton from "./SpellDetailsSkeleton";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import {
+    Spell,
+    addFavorite,
+    isFavorite,
+    removeFavorite,
+} from "../store/slices/favoritesSlice";
+import { GoHeart, GoHeartFill } from "react-icons/go";
 
 const SpellDetails = () => {
     const spellIndex = useParams()[paramConstants.SPELLID];
@@ -43,39 +52,76 @@ const SpellDetails = () => {
     );
 };
 
-const SpellDetailsContent = ({ spellData }: { spellData: SpellDetailType }) => (
-    <div className="max-w-3xl rounded-0.5 p-1 bg-white shadow">
-        <h1 className="sm:text-1.5 text-1.75 font-medium text-primary-900">
-            {spellData.name}
-        </h1>
-        <div className="flex gap-1">
-            <p className=" text-0.875">{formatName(spellData.school.index)}</p>
-            <p>-</p>
-            <p className="text-0.875">{spellData.components.join(", ")}</p>
-        </div>
-        <p className="mb-1">{spellData.desc}</p>
+const SpellDetailsContent = ({ spellData }: { spellData: SpellDetailType }) => {
+    const dispatch = useDispatch();
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
-            <Detail title="Level" value={spellData.level} />
-            <Detail title="Casting Time" value={spellData.casting_time} />
-            <Detail title="Range" value={spellData.range} />
-            <Detail
-                title="Components"
-                value={spellData.components.join(", ")}
-            />
-            <Detail title="Duration" value={spellData.duration} />
-            <Detail title="School" value={spellData.school.index} />
-            <Detail
-                title="Damage/Effect"
-                value={spellData.damage?.damage_type.index || ""}
-            />
+    const isSpellFavorite = useSelector((state: RootState) =>
+        isFavorite(state, spellData.name)
+    );
+
+    const handleToggleFavorite = () => {
+        const spell: Spell = {
+            index: spellData.name, // Use the spell name as index
+            level: spellData.level,
+            name: spellData.name,
+            url: "", // You can set the URL if available
+        };
+
+        if (isSpellFavorite) {
+            dispatch(removeFavorite(spell.index));
+        } else {
+            dispatch(addFavorite(spell));
+        }
+    };
+    return (
+        <div className="max-w-3xl rounded-0.5 p-1 bg-white shadow">
+            <div className="flex items-center justify-between">
+                <h1 className="sm:text-1.5 text-1.75 font-medium text-primary-900">
+                    {spellData.name}
+                </h1>
+                {isSpellFavorite ? (
+                    <GoHeartFill
+                        className="cursor-pointer text-[red] text-1.375 transition-all hover:text-[red]"
+                        onClick={handleToggleFavorite}
+                    />
+                ) : (
+                    <GoHeart
+                        className="cursor-pointer text-gray-700 text-1.375 transition-all hover:text-[red]"
+                        onClick={handleToggleFavorite}
+                    />
+                )}
+            </div>
+            <div className="flex gap-1">
+                <p className=" text-0.875">
+                    {formatName(spellData.school.index)}
+                </p>
+                <p>-</p>
+                <p className="text-0.875">{spellData.components.join(", ")}</p>
+            </div>
+            <p className="mb-1">{spellData.desc}</p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
+                <Detail title="Level" value={spellData.level} />
+                <Detail title="Casting Time" value={spellData.casting_time} />
+                <Detail title="Range" value={spellData.range} />
+                <Detail
+                    title="Components"
+                    value={spellData.components.join(", ")}
+                />
+                <Detail title="Duration" value={spellData.duration} />
+                <Detail title="School" value={spellData.school.index} />
+                <Detail
+                    title="Damage/Effect"
+                    value={spellData.damage?.damage_type.index || ""}
+                />
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 type DetailProps = {
     title: string;
-    value: string;
+    value: string | number;
 };
 
 const Detail = ({ title, value }: DetailProps) => (

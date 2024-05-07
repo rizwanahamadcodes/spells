@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { DrawerContext, useDrawerProps } from "./useDrawerProps";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import CloseButton from "../CloseButton/CloseButton";
 import BrandLogo from "../BrandLogo";
 
@@ -15,6 +15,14 @@ export type DrawerProps = {
 
 const Drawer = (props: DrawerProps) => {
     const { className, children, isOpen, open, close, toggle } = props;
+    const staticClose = useCallback(() => {
+        close();
+    }, []);
+
+    useEffect(() => {
+        staticClose();
+    }, [location.pathname, staticClose]);
+
     return (
         <DrawerContext.Provider value={{ isOpen, open, close, toggle }}>
             <DrawerWrapper className={className}>
@@ -112,32 +120,42 @@ export const DrawerDefaultHead = (props: DrawerDefaultHeadProps) => {
     );
 };
 
-type DrawerBodyProps = { children: React.ReactNode; defaultPadding?: boolean };
+type DrawerBodyProps = {
+    className?: string;
+    children: React.ReactNode;
+    defaultPadding?: boolean;
+};
 
 export const DrawerBody = (props: DrawerBodyProps) => {
-    const { children, defaultPadding = false } = props;
+    const { children, defaultPadding = false, className } = props;
 
     return (
         <div
             className={clsx(
                 "grow overflow-y-auto",
-                defaultPadding ? "px-2 py-1" : ""
+                defaultPadding ? "px-2 py-1" : "",
+                className
             )}>
             {children}
         </div>
     );
 };
 
-type DrawerFootProps = { children: React.ReactNode; defaultPadding?: boolean };
+type DrawerFootProps = {
+    className: string;
+    children: React.ReactNode;
+    defaultPadding?: boolean;
+};
 
 export const DrawerFoot = (props: DrawerFootProps) => {
-    const { children, defaultPadding = true } = props;
+    const { className, children, defaultPadding = true } = props;
 
     return (
         <div
             className={clsx(
                 "shrink-0 w-full border-t border-t-gray-100 h-navHeight flex items-center",
-                defaultPadding ? "px-2" : ""
+                defaultPadding ? "px-2" : "",
+                className
             )}>
             {children}
         </div>

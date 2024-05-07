@@ -8,7 +8,7 @@ export type SpellDetailType = {
     };
     components: string[];
     desc: string;
-    level: string;
+    level: number;
     casting_time: string;
     range: string;
     duration: string;
@@ -17,6 +17,7 @@ export type SpellDetailType = {
             index: string;
         };
     };
+    url: string;
 };
 
 type FetchSpellResult = {

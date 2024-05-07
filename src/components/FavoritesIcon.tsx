@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Button, { ButtonIcon } from "./Button";
 import { DrawerProps } from "./Drawer/Drawer";
 // import { useSelector } from "react-redux";
@@ -6,6 +7,8 @@ import { DrawerProps } from "./Drawer/Drawer";
 // import Button, { ButtonIcon } from "../Button";
 // import { DrawerProps } from "../Drawer";
 import { GoHeart } from "react-icons/go";
+import { RootState } from "../store/store";
+import { selectAllFavorites } from "../store/slices/favoritesSlice";
 
 type FavoritesDrawerProps = {
     open?: DrawerProps["open"];
@@ -17,7 +20,10 @@ const FavoritesIcon = (props: FavoritesDrawerProps) => {
     // const noOfItemsInFavorites = useSelector((state: RootState) =>
     //     selectNoOfItemsInFavorites(state)
     // );
-    const noOfItemsInFavorites = 3;
+    const favoriteSpells = useSelector((state: RootState) =>
+        selectAllFavorites(state)
+    );
+    const noOfItemsInFavorites = favoriteSpells.length;
 
     return (
         <>
